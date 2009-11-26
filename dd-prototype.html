@@ -1,0 +1,93 @@
+<html>
+<head>
+
+<!-- Based on some code found here: http://www.tutorialspoint.com/index.htm -->	
+	
+<title>Drag and Drop Example</title>
+<script type="text/javascript"  src="javascripts/prototype.js"></script>
+<script type="text/javascript"  src="javascripts/scriptaculous.js"></script>
+
+<script type="text/javascript">
+   window.onload = function() {
+   // Make all the images draggables from draggables division.
+   $A($('draggables').getElementsByTagName('img')).each(
+      function(item) {
+         new Draggable(
+            item,
+            {
+               revert: true,
+               ghosting: true
+            }
+         );
+      }
+   );
+
+   Droppables.add(
+     'droparea',
+     {
+        hoverclass: 'hoverActive',
+        onDrop: moveItem
+     }
+  );
+   // Set drop area by default  non cleared.
+   $('droparea').cleared = false;
+}
+function moveItem( draggable,droparea){
+   if (!droparea.cleared) {
+      droparea.innerHTML = '';
+      droparea.cleared = true;
+   }
+   draggable.parentNode.removeChild(draggable);
+   droparea.appendChild(draggable);
+}
+</script>
+<style type="text/css">
+#draggables {
+   width: 172px;
+   border: 3px ridge blue;
+   float: left;
+   padding: 9px;
+}
+
+
+#droparea {
+   position: absolute;
+   left: 250px;
+   top: 250px;
+   margin-left: 16px;
+   width: 172px;
+   height: 300px;
+   border: 3px ridge maroon;
+   text-align: center;
+   font-size: 24px;
+   padding: 9px;
+}
+.hoverActive {
+   background-color: #ffffcc;
+}
+
+#draggables img, #droparea img {
+   margin: 4px;
+   border:1px solid red;
+}
+
+
+</style>
+</head>
+<body>
+<div id="draggables">
+   These animals can be dragged<br>	 
+   <img src="images/penguin.png"  id=penguin  style='width:150;' />
+   <img src="images/mouse.png"    id=mouse style='width:150;'/>
+</div>
+
+<div id='notdraggable'  >
+   The walrus cant be dragged<br>	 
+   <img src="images/walrus.png"   id=walrus style='position:absolute; width: 200px; left: 300px; top: 20px;'/>
+</div>
+
+<div id="droparea">
+   Drag and Drop Your Images in this area
+</div>
+</body>
+</html>

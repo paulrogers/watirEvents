@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <script src="javascripts/jquery/src/jquery.ui-1.5.3/jquery-1.2.6.js"></script>
+  
+  <script>
+  $(document).ready(function(){
+    $(".block").draggable({helper: 'clone'});
+$(".drop").droppable({
+	accept: ".block",
+	activeClass: 'droppable-active',
+	hoverClass: 'droppable-hover',
+	drop: function(ev, ui) {
+		$(this).append("<br>Dropped!");
+	}
+});
+  });
+  </script>
+<style>
+.block { 
+   position: absolute;
+   top: 5px;
+   left: 5px;
+   border: 2px solid #0090DF;
+   background-color: #68BFEF;
+   width: 75px; 
+   height: 75px;
+   margin: 10px;
+   z-index: 100;
+}
+
+.nodragblock { 
+   position: absolute;
+   top: 95px;
+   left: 5px;
+   border: 2px solid #0090DF;
+   background-color: #68BFEF;
+   width: 75px; 
+   height: 75px;
+   margin: 10px;
+   z-index: 100;
+}
+
+.drop { 
+	background-color: #e9b96e;
+	border: 3px double #c17d11;
+	width: 150px; 
+	height: 70px;
+	margin: 10px; 
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	opacity: 0.7;
+	overflow:auto;
+}
+.droppable-active {
+	opacity: 1.0;
+}
+.droppable-hover {
+	outline: 1px dotted black;
+}</style>
+</head>
+<body>
+  
+<script src="http://dev.jquery.com/view/tags/ui/latest/ui/ui.core.js"></script>
+<script src="http://dev.jquery.com/view/tags/ui/latest/ui/ui.draggable.js"></script>
+<script src="http://dev.jquery.com/view/tags/ui/latest/ui/ui.droppable.js"></script>
+<div class="block" id='dragMe'>drag me!</div>
+<div class='nodragblock'  id='IdontDrag'>Cant Drag Me</div>
+<div class="drop" id=droparea>drop on me!</div>
+
+</body>
+</html>
